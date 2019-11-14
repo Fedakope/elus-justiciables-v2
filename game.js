@@ -7,3 +7,5 @@ function RandomPeople () {
     let randomPeople = peopleList[Math.floor(Math.random()*peopleList.length)];
     return randomPeople
 }
+
+
