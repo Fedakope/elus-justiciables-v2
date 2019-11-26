@@ -1,3 +1,5 @@
+// EVENT LISTENNER 
+
 document.addEventListener("DOMContentLoaded", function(event) { 
   // Constitution de la page HTML  
   $(function(){ $("#navbar").load("components/navbar.html") })  
@@ -11,10 +13,46 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   });
 
+
+
+   var myCard = document.getElementsByClassName('card');
+    for(var i=0; i < myCard.length; i++)
+      {
+        myCard[i].onclick = function()
+        {
+         //var monTitre =  myCard.querySelector('h5')
+          // SwalError(monTitre)
+          console.log('bonjour')
+        }
+      }   
+
+
+
+
+  function EntierAleatoire(min, max)
+  {
+   return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
   
   function InjectRandomFact() {
+    //fact
+    var randomFact = RandomFact()
     $("#well").empty()
-    $("#well").append("<h1>" + RandomFact().Content + "</h1>")
+    $("#well").append("<h1>" + randomFact.Content + "</h1>")
+
+    //people
+    $("#card-title1").empty()
+    $("#card-title2").empty()
+    $("#card-title3").empty()
+    var entierAleatoire = EntierAleatoire(1, 3);
+    $("#card-title" + entierAleatoire ).empty()
+    $("#card-title" + entierAleatoire).append(randomFact.People.Firstname + " " + randomFact.People.Lastname)
+
+
+    // event listenner 
+
+
+
   }
    
   function InjectRandomPeople() {
@@ -35,18 +73,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   // var id_exchange = $(this).attr("data-idExchange");
 
-
+  
 
 
 
   // SWAL 
 
-function SwalError() {
+function SwalError(people) {
   Swal.fire({
     icon: 'error',
     title: 'Oops...',
-    text: 'Vous avez cliqué sur :',
-    footer: 'LA bonne réponse était : '
+    text: 'Vous avez cliqué sur :' + people,
+    footer: 'La bonne réponse était : '
   })
 }
   
@@ -56,6 +94,6 @@ $(".card").on("click", function() {
     icon: 'error',
     title: 'Oops...',
     text: 'Vous avez cliqué sur :',
-    footer: 'LA bonne réponse était : '
+    footer: 'La bonne réponse était : '
   })
 });
