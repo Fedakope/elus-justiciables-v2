@@ -1,5 +1,4 @@
 // EVENT LISTENNER 
-
 document.addEventListener("DOMContentLoaded", function(event) { 
   // Constitution de la page HTML  
   $(function(){ $("#navbar").load("components/navbar.html") })  
@@ -9,22 +8,62 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $(function(){ $("#well").load("components/well.html") }) 
 
   // Fonction du game
-    Seeds()   
-
+    Seeds()
   });
 
 
 
-   var myCard = document.getElementsByClassName('card');
-    for(var i=0; i < myCard.length; i++)
-      {
-        myCard[i].onclick = function()
-        {
-         //var monTitre =  myCard.querySelector('h5')
-          // SwalError(monTitre)
-          console.log('bonjour')
-        }
-      }   
+  function Inject() {
+    var myFirstPick = _.sample(factList, 3);
+    var mySecondPick = _.sample(myFirstPick);
+  
+    // people 
+    $("#card-title1").empty()
+    $("#card-title1").append(myFirstPick[0].People.Firstname + " " + myFirstPick[0].People.Lastname)
+  
+    $("#card-title2").empty()
+    var ppl = RandomPeople()
+    $("#card-title2").append(myFirstPick[1].People.Firstname + " " + myFirstPick[1].People.Lastname)
+  
+    $("#card-title3").empty()
+    var ppl = RandomPeople()
+    $("#card-title3").append(myFirstPick[2].People.Firstname + " " + myFirstPick[2].People.Lastname)
+  
+    // fact 
+    $("#well").empty()
+    $("#well").append("<h1>" + mySecondPick.Content + "</h1>")
+      
+    // debug 
+
+    }
+
+    // enelver le event listtenr a chaque inject, ou le reset it 
+    function ShutUpAndListen () {
+      const c1 = document.getElementById('c1');
+      const c1name = c1.querySelector('.card-title').innerText
+      c1.addEventListener('click', function (event) {
+        alert('Vous avez cliqué sur la carte 1 : ' + c1name);
+      });
+
+      const c2 = document.getElementById('c2');
+      const c2name = c2.querySelector('.card-title').innerText
+      c2.addEventListener('click', function (event) {
+        alert('Vous avez cliqué sur la carte 2 : ' + c2name);
+      });
+
+      const c3 = document.getElementById('c3');
+      const c3name = c3.querySelector('.card-title').innerText
+      c3.addEventListener('click', function (event) {
+        alert('Vous avez cliqué sur la carte 3 : ' + c3name);
+      });
+
+    }
+
+
+
+
+
+
 
 
 
@@ -34,50 +73,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
   
-  function InjectRandomFact() {
-    //fact
-    var randomFact = RandomFact()
-    $("#well").empty()
-    $("#well").append("<h1>" + randomFact.Content + "</h1>")
-
-    //people
-    $("#card-title1").empty()
-    $("#card-title2").empty()
-    $("#card-title3").empty()
-    var entierAleatoire = EntierAleatoire(1, 3);
-    $("#card-title" + entierAleatoire ).empty()
-    $("#card-title" + entierAleatoire).append(randomFact.People.Firstname + " " + randomFact.People.Lastname)
-
-
-    // event listenner 
-
-
-
-  }
-   
-  function InjectRandomPeople() {
-    $("#card-title1").empty()
-    var ppl = RandomPeople()
-    $("#card-title1").append(ppl.Firstname + " " + ppl.Lastname)
-
-    $("#card-title2").empty()
-    var ppl = RandomPeople()
-    $("#card-title2").append(ppl.Firstname + " " + ppl.Lastname)
-
-    $("#card-title3").empty()
-    var ppl = RandomPeople()
-    $("#card-title3").append(ppl.Firstname + " " + ppl.Lastname)
-  }
-
   
-
-  // var id_exchange = $(this).attr("data-idExchange");
-
-  
-
-
-
-  // SWAL 
 
 function SwalError(people) {
   Swal.fire({
@@ -97,3 +93,4 @@ $(".card").on("click", function() {
     footer: 'La bonne réponse était : '
   })
 });
+
