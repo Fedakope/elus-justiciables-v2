@@ -11,6 +11,33 @@ document.addEventListener("DOMContentLoaded", function(event) {
     Seeds()
   });
 
+  // cards 
+  let c1;
+  let c2;
+  let c3;
+
+    // title-card (ex: Nicolsa Sarkozy)
+    let cn1;
+    let cn2;
+    let cn3;
+
+  // event handler
+  function Listen() {
+    c1.addEventListener('click', function (event) {
+      alert('Vous avez cliqué sur la carte' + cn1);
+     });
+
+     c2.addEventListener('click', function (event) {
+      alert('Vous avez cliqué sur la carte' + cn2);
+     });
+
+     c3.addEventListener('click', function (event) {
+      alert('Vous avez cliqué sur la carte' + cn3);
+     });
+
+  }
+
+
 
 
   function Inject() {
@@ -32,35 +59,43 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // fact 
     $("#well").empty()
     $("#well").append("<h1>" + mySecondPick.Content + "</h1>")
-      
-    // debug 
+    
+    // assignation des card-title (Nicolas Sarkozy)
+    Ciblage();
+
+    //
 
     }
+
+    function Ciblage() {
+    cn1 = document.getElementById('c1').querySelector('.card-title').innerText
+    cn2 = document.getElementById('c2').querySelector('.card-title').innerText
+    cn3 = document.getElementById('c3').querySelector('.card-title').innerText
+
+    c1 = document.getElementById('c1')
+    c2 = document.getElementById('c2')
+    c3 = document.getElementById('c3')
+    }
+
+
 
     // enelver le event listtenr a chaque inject, ou le reset it 
-    function ShutUpAndListen () {
-      const c1 = document.getElementById('c1');
-      const c1name = c1.querySelector('.card-title').innerText
-      c1.addEventListener('click', function (event) {
-        alert('Vous avez cliqué sur la carte 1 : ' + c1name);
-      });
 
-      const c2 = document.getElementById('c2');
-      const c2name = c2.querySelector('.card-title').innerText
-      c2.addEventListener('click', function (event) {
-        alert('Vous avez cliqué sur la carte 2 : ' + c2name);
-      });
 
-      const c3 = document.getElementById('c3');
-      const c3name = c3.querySelector('.card-title').innerText
-      c3.addEventListener('click', function (event) {
-        alert('Vous avez cliqué sur la carte 3 : ' + c3name);
-      });
 
+    // let c1 = document.getElementById('c1').querySelector('.card-title').innerText
+    // let c2 = document.getElementById('c2').querySelector('.card-title').innerText
+    // let c3 = document.getElementById('c3').querySelector('.card-title').innerText
+
+
+    // c1.addEventListener('click', function (event) {
+    //   alert('Vous avez cliqué sur la carte' +  c1 + document.getElementById('c1').querySelector('.card-title').innerText);
+    // });
+
+
+    function Remove() {
+      y.removeEventListener("mouseover", RespondMouseOver)
     }
-
-
-
 
 
 
